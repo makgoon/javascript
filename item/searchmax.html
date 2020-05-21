@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id = "first">
+    <input type="text" id = "second">
+    <input type="text" id = "third">
+
+    <input type="button" name="찾기" id = "checkBtn">
+    <span id="result"></span>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#checkBtn").click(function(){
+    getCarServer();
+    });
+
+  function getCarServer(){
+      $.ajax({
+        url:'/viewresult',
+        data: {
+          str1: $("#first").val(),
+          str2: $("#second").val(),
+          str3: $("#third").val()
+
+        },
+        success: function(res){
+          $("#result").append("<br>" + res);
+        }
+      })
+  };
+
+</script>
+
+</html>
