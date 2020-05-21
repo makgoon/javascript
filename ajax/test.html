@@ -4,22 +4,28 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <script src"//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <input type = "button" id = "execute" value = "execute" />
-
+  <input type="text" id="firstinput">
+  <input type="text" id="secondinput">
+  <input type="button" value="호출" id = "ajaxBnt">
+  <span id="result"></span>
   <body>
 
   </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
-    $('#execute').click(function(){
+    $("#ajaxBnt").click(function(){
       $.ajax({
-          url:'./time.php',
-          success:function(data){
-              $('#time').append(data);
+          url:'http://localhost/sum',
+          data: {
+            var firstnum = $("#firstinput").val();
+            var secondnum = $("#secondinput").val();
+            num1 : firstnum,
+            num2 : secondnum
+          },
+          success:function(response){
           }
-      })
-    })
-
+        });
+    });
 
   </script>
 </html>
