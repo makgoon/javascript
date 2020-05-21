@@ -44,7 +44,7 @@ app.get('/itemForm', function (req,res){
         break;
       }
   }
-  res.send(responseItem);  
+  res.send(responseItem);
 
 
 });
