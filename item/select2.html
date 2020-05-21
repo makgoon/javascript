@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,14 +6,20 @@
   </head>
   <body>
     <select id="car">
-      <option value="bmw">베엠베</option>
-      <option value="hyundai">현대</option>
-      <option value="toyota">토요타</option>
+      <option value="0">bmw</option>
+      <option value="1">현대</option>
+      <option value="2">토요타</option>
+      <option value="3">쉐보레</option>
+      <option value="4">혼다</option>
+
     </select>
     <select id="color">
-      <option value="red">빨강</option>
-      <option value="green">초록</option>
-      <option value="black">검정</option>
+      <option value="0">빨강</option>
+      <option value="1">초록</option>
+      <option value="2">검정</option>
+      <option value="3">보라</option>
+      <option value="4">하양</option>
+    <!-- 벨류의 경우 변수를 먼저 정한다음에 정해도 늦지 않음 형식만 맞추기 -->
     </select>
     <input type="button" name="가격확인" id = "checkBtn">
     <span id="result"></span>
@@ -30,8 +34,8 @@
       $.ajax({
         url:'/carInfo',
         data: {
-          str1: $("#car option:selected").val(),
-          str2: $("#color option:selected").val()
+          str1: $("#car").val(),
+          str2: $("#color").val()
 
         },
         success: function(res){
