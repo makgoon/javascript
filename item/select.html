@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <select id="car">
+      <option value="bmw">베엠베</option>
+      <option value="hyundai">현대</option>
+      <option value="toyota">토요타</option>
+    </select>
+    <select id="color">
+      <option value="red">빨강</option>
+      <option value="green">초록</option>
+      <option value="black">검정</option>
+    </select>
+    <input type="button" name="가격확인" id = "checkBtn">
+    <span id="result"></span>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+  $("#checkBtn").click(function(){
+    getCarServer();
+    });
+
+  function getCarServer(){
+      $.ajax({
+        url:'/carInfo',
+        data: {
+          str1: $("#car option:selected").val(),
+          str2: $("#color option:selected").val()
+
+        },
+        success: function(res){
+          $("#result").append("<br>" + res);
+        }
+      })
+  };
+
+</script>
+
+</html>
