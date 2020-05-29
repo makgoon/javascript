@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" name="조회" id = "checkBtnselect">
+    <input type="button" name="업데이트" id = "checkBtnupdate">
+    <input type="button" name="삭제" id = "checkBtnseldelect">
+    <input type="button" name="추가" id = "checkBtnselinsert">
+    <span id="resulttable"></span>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  $("#checkBtnselect").click(function(){
+    viewtable();
+    });
+
+  function viewtable(){
+      $.ajax({
+        url:'/selectFromServer',
+        data: {
+
+
+        },
+        success: function(res){
+          $("#resulttable").append(res);
+        }
+      })
+  };
+
+  </script>
+</html>

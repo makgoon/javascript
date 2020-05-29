@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <input type = "button" value = "호출" id = "Btn">
+      <span id = "result"></span>
+
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+
+    $("#Btn").click(function(){
+      getTable();
+    });
+    function getTable(){
+
+        //서버에서 다시 리퀘스트
+        $.ajax({
+          url:'/test',
+          data:{},
+          success:function(res){
+          for(var i=0; i < res.length; i++){
+              $("#result").append(`"제목" : ${res[i].name} <br> "내용" : ${res[i].content}`);
+          }
+
+
+          },
+        });
+
+
+}
+  </script>
+</html>
