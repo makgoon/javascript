@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="newsListArea"></div>
+    <input type="button" value="글쓰기" id="goToPostBtn">
+  </body>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+    $.ajax({
+      url:'/news',
+      data:"",
+      success:function(res){
+        for(var i=0;i<res.length;i++) {
+          var news = res[i];
+          $("#newsListArea").append(`제목 : ${news.title}
+            <input type="button" value="수정" onclick="updateNews(${news.no})">
+            <input type="button" value="삭제" onclick="deleteNews(${news.no})">
+            <br> 내용 : ${news.content} <br><br>`);
+        }
+      }
+    });
+
+    $("#goToPostBtn").click(function(){
+      location.href = "/newsPostPage";
+    });
+
+    function updateNews(no) {
+      location.href = "/newsUpdatePage?" + no;
+    }
+
+    function deleteNews(no) {
+      if(confirm("삭제하시겠습니까?")) {
+        //삭제
+        $.ajax({
+          url:'/news',
+          type:"DELETE",
+          data:{
+            no: no
+          },
+          success:function(res){
+            location.href = "/";
+          }
+        });
+      }
+    }
+
+  </script>
+</html>

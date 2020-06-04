@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="newsArea"></div>
+    <input type="button" value="글쓰기" id="goToPostBtn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $.ajax({
+      url:'/newsget',
+      data:{},
+      success:function(response){
+        console.log(response);
+          for(var i=0;i<response.length;i++) {
+            var news = response[i];
+            $("#newsArea").append(
+              `제목 : ${news.title}
+               내용 : ${news.content} <br><br>`);
+          }
+      },
+    });
+    </script>
+</html>

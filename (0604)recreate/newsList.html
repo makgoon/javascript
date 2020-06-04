@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <div id="newsArea"></div>
+      <input type = "button" value = "글쓰기" onclick="redirectToPostNewsPage()">
+
+
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $.ajax({
+      url:'/newsget',
+      data:{},
+      success:function(response){
+        console.log(response);
+          for(var i=0;i<response.length;i++) {
+            var news = response[i];
+            $("#newsArea").append(
+              `제목 : ${news.title}
+              <input type="button" value="삭제" onclick="delectenews(${news.no})">
+              <input type="button" value="수정" onclick="location.href='/newsupdate?no=${news.no}'"><br>
+              내용 : ${news.content} <br><br>`);
+          }
+      },
+    });
+
+  function redirectToPostNewsPage() {
+      location.href = "/newswrite";
+  }
+  function delectenews(no){
+    var alertchecker = confirm("기사를 삭제하시겠습니까?")
+    if (alertchecker){
+      $.ajax({
+        url:'/newsdelete',
+        type: 'DELETE',
+      //data는 request시 변수를 보내는 곳
+        data:{
+          no: no
+
+        },
+
+        success:function(response){
+          location.reload();
+
+          console.log(response);
+        }
+      // $.ajax({
+      //   url:'/newswritetoDB',
+      //   data:{},
+      //   success:function(res){
+      //
+      //   }
+        // }
+      });
+      alert("기사가 삭제되었습니다")
+    }else{
+      alert("기사 삭제를 취소했습니다.")
+    }
+
+  }
+  // function updatenews(no){
+  //   $.ajax({
+  //     url:'/newsupdate',
+  //     type: 'POST',
+  //   //data는 request시 변수를 보내는 곳
+  //     data:{
+  //       no: no
+  //
+  //     },
+  //
+  //     success:function(response){
+  //         console.log(response);
+  //     }
+  //   // $.ajax({
+  //   //   url:'/newswritetoDB',
+  //   //   data:{},
+  //   //   success:function(res){
+  //   //
+  //   //   }
+  //     // }
+  //   });
+  // }
+
+
+  </script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id="title">
+    <input type="text" id="content">
+    <input type="button" value="수정하기" id="updateNewsBtn">
+    <input type="button" value="돌아가기" id="backToListBtn">
+  </body>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+    var no = location.href.split("?")[1];
+
+    $.ajax({
+      url:'/news',
+      data:{
+        no: no
+      },
+      success:function(res){
+        var news = res[0];
+        $("#title").val(news.title);
+        $("#content").val(news.content);
+      }
+    });
+
+    $("#backToListBtn").click(function(){
+      location.href = "/";
+    });
+
+    $("#updateNewsBtn").click(function(){
+      $.ajax({
+        url:'/news',
+        type:"PUT",
+        data:{
+          no: no,
+          title: $("#title").val(),
+          content: $("#content").val(),
+        },
+        success:function(res){
+          alert("글이 수정되었습니다.");
+          location.href = "/";
+        }
+      });
+    });
+
+
+
+  </script>
+</html>

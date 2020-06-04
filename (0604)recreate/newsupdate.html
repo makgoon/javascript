@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id = "title">
+    <input type="text" id = "content">
+    <input type = "button" value = "수정하기" id = "Btn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    var no = location.href.split("=")[1]
+    $.ajax({
+      url:'/newsupdateview',
+      type: 'GET',
+    //data는 request시 변수를 보내는 곳
+    //get방식에서는 data에 값을 넣으면 자동으로 key와 value로 자동으로 변환한다.
+      data:{
+        no: no
+      },
+        success:function(response){
+        $("#title").val(response[0].title);
+        $("#content").val(response[0].content);
+        console.log(response)
+
+      }
+    });
+
+    $("#Btn").click(function(){
+      getTable();
+    });
+    function getTable(){
+
+      var title = $("#title").val();
+      var content = $("#content").val();
+        console.log(no, title, content);
+        $.ajax({
+           url:'/newsupdateaction',
+            type:'PUT',
+           data: {
+             no: no,
+             title: title,
+             content: content
+           },
+           success:function(response){
+             location.href = "/newsList";
+           }
+         });
+        }
+
+
+
+
+
+  </script>
+</html>

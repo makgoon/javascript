@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id="title">
+    <input type="text" id="content">
+    <input type="button" value="글쓰기" id="postNews">
+    <input type="button" value="돌아가기" id="backToListBtn">
+  </body>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+    $.ajax({
+      url:'/',
+      data:"",
+      success:function(res){
+      }
+    });
+
+    $("#backToListBtn").click(function(){
+      location.href = "/";
+    });
+
+    $("#postNews").click(function(){
+      $.ajax({
+        url:'/news',
+        type:"POST",
+        data:{
+          title: $("#title").val(),
+          content: $("#content").val(),
+        },
+        success:function(res){
+          alert("글 등록이 완료되었습니다.");
+          location.href = "/";
+        }
+      });
+    });
+
+  </script>
+</html>

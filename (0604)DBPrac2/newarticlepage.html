@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="text" id = "title">
+    <input type="text" id = "content">
+    <input type = "button" value = "글쓰기" id = "Btn">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+
+
+    $("#Btn").click(function(){
+      getTable();
+    });
+    function getTable(){
+      var title = $("#title").val();
+      var content = $("#content").val();
+      console.log(title, content);
+
+        $.ajax({
+          url:'/newswritetoDB',
+          type: 'POST',
+          data:{
+            title: title,
+            content: content
+          },
+            success:function(response){
+            // 디버그용
+            // console.log(response);
+          }
+        });
+    }
+  </script>
+</html>
