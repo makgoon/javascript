@@ -26,12 +26,25 @@ app.get('/newsget', function (req,res){
     )
 });
 
-app.get('/newswritetoDB', function (req,res){
-  var q = `select * from testtable`;
+app.get('/newswrite', function (req,res){
+
+  res.sendfile("newswrite.html");
+});
+
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
+
+
+app.post('/newswritetoDB', function (req,res){
+    var title = req.body.title;
+    var content = req.body.content;
+    var q = `INSERT INTO testtable (title, content) VALUES ('${title}','${content}');`
     connection.query(q,
       function(err, rows, fields){
         if(err) throw err;
-        res.send(rows)
+
+        res.send(rows);
       }
-    )
-});
+    );
+  });
