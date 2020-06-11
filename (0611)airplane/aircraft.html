@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>항공기 입력페이지</title>
+  </head>
+  <body>
+    <span id="aricraftListArea"></span><br>
+    항공코드 : <input type="text" id="aircraftCode"><br>
+    항공기명 : <input type="text" id="aircraftName"><br>
+    좌석수 : <input type="text" id="seats"><br>
+    <input type="button" value="입력" id="insertAricraftBtn">
+
+  </body>
+</html>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+  $("#insertAricraftBtn").click(function(){
+    flightPage();
+    });
+  function flightPage(){
+    $.ajax({
+      url:'/flightInputDb',
+      type: 'POST',
+      data:{
+        aircraftCode: $("#aircraftCode").val(),
+        aircraftName: $("#aircraftName").val(),
+        seats: $("#seats").val()
+      },
+        success:function(response){
+          location.href = "/aircraftInfo"
+      }
+    });
+  };
+
+</script>

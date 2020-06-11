@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>항공정보 입력페이지</title>
+  </head>
+  <body>
+    편명 : <input type="text" id="flightName"><br>
+    항공기명 : <select  id="aircraftCode">
+
+              </select><br>
+    출발지 : <input type="text" id="departure"><br>
+    목적지 : <input type="text" id="arrival"><br>
+    출발시각 : <input type="text" id="departTime"><br>
+    도착시각 : <input type="text" id="arrivalTime"><br>
+
+    <input type="button" value="운항입력" id = "checkBtnInputFlight">
+
+  </body>
+</html>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$.ajax({
+  url:'/getAircraftDb',
+  type: 'get',
+  data:{},
+    success:function(response){
+      for(var i=0;i<response.length;i++) {
+        var f = response[i];
+        $("#aircraftCode").append(`<option value="${f.aircraftCode}"> ${f.aircraftCode} </option><br>`);
+      }
+  }
+});
+
+$("#checkBtnInputFlight").click(function(){
+  flightPage();
+  });
+function flightPage(){
+  $.ajax({
+    url:'/aircraftInputDb',
+    type: 'POST',
+    data:{
+      flightName: $("#flightName").val(),
+      aircraftCode: $("#aircraftCode").val(),
+      departure: $("#departure").val(),
+      arrival: $("#arrival").val(),
+      departTime: $("#departTime").val(),
+      arrivalTime: $("#arrivalTime").val()
+
+    },
+      success:function(response){
+        location.href = "/flightInfo"
+    }
+  });
+};
+
+</script>

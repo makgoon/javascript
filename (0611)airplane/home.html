@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" value="운항정보" id = "checkBtnflight">
+    <input type="button" value="항공기정보" id = "checkBtnaircraft">
+<table id= "resulttable">
+  <th>편명</th>
+  <th>항공기명</th>
+  <th>좌석수</th>
+  <th>출발지</th>
+  <th>목적지</th>
+  <th>출발시각</th>
+  <th>도착시각</th>
+</table>
+<input type="button" value="정보출력" id="printInfo">
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+  $("#checkBtnflight").click(function(){
+    flightPage();
+    });
+
+  function flightPage(){
+      location.href = "/flightInfo";
+    };
+  $("#printInfo").click(function(){
+    printInfoAir();
+    });
+
+  function printInfoAir(){
+    $.ajax({
+      url:'/getMergeDb',
+      type: 'get',
+      data:{},
+        success:function(response){
+          for(var i=0;i<response.length;i++) {
+            var f = response[i];
+            $("#resulttable").append(`<tr><td>${f.aircraftCode}</td><td>${f.aircraftName}</td><td>${f.seats}</td><td>${f.departure}</td><td>${f.arrival}</td><td>${f.departTime}</td><td>${f.arrivalTime}</td></tr>`);
+          }
+      }
+    });
+    };
+  $("#checkBtnaircraft").click(function(){
+      location.href = "/aircraftInfo";
+  });
+
+  </script>
+</html>
