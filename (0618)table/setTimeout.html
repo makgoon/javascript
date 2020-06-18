@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script>
+    console.log("Start");
+    setTimeout(function(){
+      console.log("timeout");
+    }, 5000);
+
+//     setInterval(function(){
+//       console.log("이거슨 인터벌")
+//     }, 100);
+//끌때 
+    let consoleInterval =     setInterval(function(){
+          console.log("이거슨 인터벌")
+        }, 100);
+
+        setTimeout(function(){
+          clearInterval(consoleInterval);
+        }, 3000);
+
+
+  </script>
+</html>

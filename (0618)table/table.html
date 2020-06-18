@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table border="1" width=500 height=500>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <!-- 오른쪽으로 합치기:colspan -->
+        <td colspan="2"></td>
+        <!-- 위아래 모두 묵을때는 col 먼저 하고 row 적용 -->
+        <td colspan="2" rowspan="2"></td>
+        <!-- <td></td> -->
+      </tr>
+      <tr>
+        <td></td>
+        <!-- 위아래 합치기: rowspan -->
+        <td rowspan="2"></td>
+        <!-- <td colspan="2"></td>
+        <!-- <td></td> --> -->
+      </tr>
+      <tr>
+        <td></td>
+
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td rowspan="2" colspan="2"></td>
+        <!-- <td rowspan="2"></td> -->
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <!-- <td></td>
+        <td></td> -->
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+</html>

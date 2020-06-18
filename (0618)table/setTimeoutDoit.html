@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<!-- 배수증가버튼: 클릭 3초후 입력한 숫자의 배수씩 증가하며 출력
+타이머 버튼 클릭 : 클릭 3초후 버튼 옆에 1초에 1식 증가하는 숫자 출력
+타이머 종료 버튼 클릭: 클릭 3초후 타이머 종료 -->
+<input type="text" id="writenumber">
+<input type="button" id="clickmulti" name="배수증가" value="배수증가">
+<input type="button" id="clicktimerst" name="타이머시작" value="타이머시작">
+<input type="button" id="clicktimerquit" name="타이머종료" value="타이머종료">
+<span id="timerread"></span>
+<br>
+<span id="readmulti"></span>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+let timerinterval = ""
+  $("#clickmulti").click(function(){
+    console.log("배수 클릭");
+    var multifulnum = $("#writenumber").val()
+    var counter = 1
+    var result = 0
+    console.log(multifulnum)
+    setTimeout(function(){
+      setInterval(function(){
+        result = multifulnum * counter
+        counter = counter + 1
+        $("#readmulti").append(result + `<br>`)
+      },1000);
+    },3000);
+  });
+
+  $("#clicktimerst").click(function() {
+    console.log("타이머 시작합니다");
+    var stopwatch = 1;
+    timerinterval = setInterval(function(){
+      $("#timerread").html(stopwatch)
+      stopwatch = stopwatch + 1
+    },1000);
+  });
+$("#clicktimerquit").click(function(){
+  setTimeout(function(){
+    clearInterval(timerinterval);
+    $("#timerread").html("timer quit")
+  }, 3000);
+});
+
+  </script>
+</html>

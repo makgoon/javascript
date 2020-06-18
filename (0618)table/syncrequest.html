@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<!-- 배수증가버튼: 클릭 3초후 입력한 숫자의 배수씩 증가하며 출력
+타이머 버튼 클릭 : 클릭 3초후 버튼 옆에 1초에 1식 증가하는 숫자 출력
+타이머 종료 버튼 클릭: 클릭 3초후 타이머 종료 -->
+<input type="text" id="writenumber"><br>
+<input type="button" id="clicksync" name="sync" value="sync">
+
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+$("#clicksync").click(function() {
+  $.ajax({
+    url:'/settext2', //'/settext1'
+    type: 'put', //'POST'
+    data:{
+      syncset: $("#writenumber").val()
+    },
+      success:function(response){
+          console.log("잘되었느니라")
+        }
+    })
+  });
+
+
+  </script>
+</html>

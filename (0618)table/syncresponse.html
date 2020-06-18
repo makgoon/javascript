@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<!-- 배수증가버튼: 클릭 3초후 입력한 숫자의 배수씩 증가하며 출력
+타이머 버튼 클릭 : 클릭 3초후 버튼 옆에 1초에 1식 증가하는 숫자 출력
+타이머 종료 버튼 클릭: 클릭 3초후 타이머 종료 -->
+값 : <span id="viewreceive"></span>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+setInterval(  function getdata(){
+
+    $.ajax({
+      url:'/getdata',
+      type: 'get',
+      data:{},
+
+        success:function(response){
+          // console.log(response)
+          // for(var i=0;i<response.length;i++) {
+            $("#viewreceive").html(response[0].syncvalue);
+            console.log(response[0].syncvalue)
+          }
+
+    });
+  }, 1000);
+
+  // function getdata(){
+  //
+  //   $.ajax({
+  //     url:'/getdata',
+  //     type: 'get',
+  //     data:{},
+  //       success:function(response){
+  //         for(var i=0;i<response.length;i++) {
+  //           $("#viewreceive").append(response);
+  //         }
+  //     }
+  //   });
+  // }
+
+
+  </script>
+</html>
