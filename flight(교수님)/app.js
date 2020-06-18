@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 	, port: 3306
 	, user: 'root'
 	, password: 'root'
-	, database: 'webui'
+	, database: 'test'
 });
 
 app.get('/flightListPage', function (req, res) {
